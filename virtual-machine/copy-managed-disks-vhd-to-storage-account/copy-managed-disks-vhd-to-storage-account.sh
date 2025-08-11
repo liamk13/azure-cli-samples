@@ -28,7 +28,7 @@ destinationVHDFileName=myvhdfilename.vhd
 
 az account set --subscription $subscriptionId
 
-sas=$(az disk grant-access --resource-group $resourceGroupName --name $diskName --duration-in-seconds $sasExpiryDuration --query [accessSas] -o tsv)
+sas=$(az disk grant-access --resource-group $resourceGroupName --name $diskName --duration-in-seconds $sasExpiryDuration --query "accessSAS" -o tsv)
 
 az storage blob copy start --destination-blob $destinationVHDFileName --destination-container $storageContainerName --account-name $storageAccountName --account-key $storageAccountKey --source-uri $sas
 # </FullScript>
